@@ -55,7 +55,7 @@ def toLoc(maiden):
 
 def toMaiden(position, precision=4):
     """Returns a maidenloc for specified lat-lon tupel at specified 
-    level. (4 being the default
+    level. (4 being the default)
     """
     lat = position[0]
     lon = position[1]

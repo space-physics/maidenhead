@@ -2,11 +2,11 @@ from distutils.core import setup
 setup(
     name = "mlocs",
     packages = ["mlocs"],
-    version = "1.0.0",
+    version = "1.0.1",
     description = "Effective Location Storage via a Maidenhead Locator System For Python",
     author = "Henri Kuiper",
     author_email = "henrikuiper@zdevops.com",
-    url = "http://zdevops.com",
+	url = "http://zdevops.tumblr.com/post/36617019481/mlocs",
     download_url = "",
     keywords = ["location", "maidenhead", "effective"],
     classifiers = [
