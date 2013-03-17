@@ -82,3 +82,9 @@ def toMaiden(position, precision=4):
 
     return astring
 
+def leftMloc(mloc):
+	"""Returns the mloc to the left (west) of mloc
+	"""
+	level = mloc.length() / 2
+	return 10
+
