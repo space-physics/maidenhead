@@ -20,5 +20,23 @@ class BasicTests(unittest.TestCase):
         n = mlocs.toMaiden(l,6)
         self.assertEquals(n,m)
 
+    def test_mloc_toHor(self):
+        """get east-west value for mloc"""
+        m = mlocs.toMaiden(casa_henri,6)
+        l = mlocs.toHor(m)
+        self.assertEquals(l,"J3I0Q9")
+
+    def test_mloc_toVer(self):
+        """get north-south value for mloc"""
+        m = mlocs.toMaiden(casa_henri,6)
+        l = mlocs.toVer(m)
+        self.assertEquals(l,"O2I9K7")
+
+    def test_mloc_left(self):
+        """Test left on own maiden"""
+        m = mlocs.toMaiden(casa_henri,5)
+        l = mlocs.left(m)
+        self.assertEquals(l,m)
+
 if __name__ == '__main__':
     unittest.main()
