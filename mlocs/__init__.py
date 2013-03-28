@@ -82,59 +82,11 @@ def toMaiden(position, precision=4):
 
     return astring
 
-def toHor(mloc):
-	"""Returns mloc encoded east-west value
-	"""
-	pick = True
-	res = ""
-
-	for i in range(mloc.__len__()):
-		if pick:
-			res += mloc[i]
-			pick = False
-		else:
-			pick = True
-	return res
-
-def toVer(mloc):
-	"""Returns mloc encoded north-south value
-	"""
-	pick = False
-	res = ""
-
-	for i in range(mloc.__len__()):
-		if pick:
-			res += mloc[i]
-			pick = False
-		else:
-			pick = True
-	return res
-
-def create(hor,ver):
-	"""Returns an mloc from [h1,h2,h3],[v1,v2,v3]
-	as [h1,v1,h2,v2,h3,v3]
-	"""
-	res = ""
-	assert(hor.__len__() == ver.__len__())
-	for i in range(hor.__len__()):
-		res += hor[i]
-		res += ver[i]
-	return res
-
-def minus(mloc):
-	# from right to left (lol)
-	for i in range(mloc.__len__(), 0):
-		if(isdigit(mloc[i])
-
-
-def left(mloc):
-	"""Returns the mloc to the left (west) of mloc
-	It move along horizontal (toHor) axis.
-	"""
-	h = toHor(mloc)
-	v = toVer(mloc)
-
-	n = h - 1
-
-	return create(n,v)
-
+def genGoogleMap(mloc="", position=[], precision=4):
+	if mloc:
+		position = toLoc(mloc)
+		strout = "http://maps.googleapis.com/maps/api/staticmap?"
+		strout += "center=" + str(position[0])
+		strout += "," + str(position[1])
+		strout += "&zoom=10&size=320x240&sensor=false"
+		return strout
