@@ -82,7 +82,7 @@ def toMaiden(position, precision=4):
 
     return astring
 
-def genGoogleMap(mloc="", position=[], precision=4):
+def genGoogleMap(mloc=""):
 	if mloc:
 		position = toLoc(mloc)
 		strout = "http://maps.googleapis.com/maps/api/staticmap?"
@@ -90,3 +90,4 @@ def genGoogleMap(mloc="", position=[], precision=4):
 		strout += "," + str(position[1])
 		strout += "&zoom=10&size=320x240&sensor=false"
 		return strout
+		

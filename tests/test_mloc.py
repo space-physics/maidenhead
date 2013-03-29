@@ -11,7 +11,6 @@ class BasicTests(unittest.TestCase):
     def test_mloc_is_sane(self):
         """Test toMaiden"""
         m = mlocs.toMaiden(casa_henri)
-        pass
 
     def test_mloc_6_is_precise(self):
         """Test toMaiden(6) on own maiden"""
@@ -19,24 +18,15 @@ class BasicTests(unittest.TestCase):
         l = mlocs.toLoc(m)
         n = mlocs.toMaiden(l,6)
         self.assertEquals(n,m)
-
-    def test_mloc_toHor(self):
-        """get east-west value for mloc"""
-        m = mlocs.toMaiden(casa_henri,6)
-        l = mlocs.toHor(m)
-        self.assertEquals(l,"J3I0Q9")
-
-    def test_mloc_toVer(self):
-        """get north-south value for mloc"""
-        m = mlocs.toMaiden(casa_henri,6)
-        l = mlocs.toVer(m)
-        self.assertEquals(l,"O2I9K7")
-
-    def test_mloc_left(self):
-        """Test left on own maiden"""
+	
+    def test_mloc_genmap(self):
+        """Test level maps are different"""
         m = mlocs.toMaiden(casa_henri,5)
-        l = mlocs.left(m)
-        self.assertEquals(l,m)
+        g = mlocs.genGoogleMap(m)
+        m1 = mlocs.toMaiden(casa_henri,4)
+        g1 = mlocs.genGoogleMap(m1)
+        self.assertNotEquals(g,g1)
+
 
 if __name__ == '__main__':
     unittest.main()
