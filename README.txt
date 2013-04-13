@@ -13,6 +13,10 @@
 # toMaiden([lat, lon], level) returns a char (len = lvl*2)
 # toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
 
+Version 1.0.3 :
+===============
+Addedd genNonSense(loc) for other map :)
+
 Version 1.0.2 :
 ===============
 Added genGooleMap() for generating static google-map images out of MLOCS :)
