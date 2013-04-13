@@ -90,4 +90,10 @@ def genGoogleMap(mloc=""):
 		strout += "," + str(position[1])
 		strout += "&zoom=10&size=320x240&sensor=false"
 		return strout
+	
+def genNonSense(loc, level=3):
+	lat = loc[0]
+	lon = loc[1]
+	mloc = toMaiden([lat,lon],level)
+	return "http://no.nonsense.ee/qthmap/?qth=" + mloc
 		

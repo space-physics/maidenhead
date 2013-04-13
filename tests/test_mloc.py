@@ -7,10 +7,17 @@ eiffel_tower = (48.8583094, 2.2945333)
 
 
 class BasicTests(unittest.TestCase):
+    def test_mloc_nonsense(self):
+        """Test no.nonsense.ee/qthmap"""
+        m = mlocs.toMaiden(casa_henri)
+        u = mlocs.genNonSense(casa_henri,4)
+	self.assertEquals(u,'http://no.nonsense.ee/qthmap/?qth=JO32II09')
+
 
     def test_mloc_is_sane(self):
         """Test toMaiden"""
         m = mlocs.toMaiden(casa_henri)
+        self.assertEquals(m,"JO32II09")
 
     def test_mloc_6_is_precise(self):
         """Test toMaiden(6) on own maiden"""
