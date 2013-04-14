@@ -13,6 +13,13 @@
 # toMaiden([lat, lon], level) returns a char (len = lvl*2)
 # toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
 
+Github repository : git@github.com:zdevops/mlocs.git
+
+Version 1.0.4 :
+===============
+Just prepped for github too. No other changes....
+
+Addedd genNonSense(loc) for other map :)
 Version 1.0.3 :
 ===============
 Addedd genNonSense(loc) for other map :)

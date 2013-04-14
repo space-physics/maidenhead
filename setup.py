@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
     name = "mlocs",
     packages = ["mlocs"],
-    version = "1.0.3",
+    version = "1.0.4",
     description = "Effective Location Storage via a Maidenhead Locator System For Python",
     author = "Henri Kuiper",
     author_email = "henrikuiper@zdevops.com",

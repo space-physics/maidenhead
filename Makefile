@@ -9,7 +9,15 @@ help:
 	@echo "  test   run unit tests (verbose)"
 	@echo "  tt     run unit tests (compact)"
 	@echo "  t      same as tt, but fails fast"
+	@echo "  pypi   package and send to pypi"
+	@echo "  github package and send to github"
 	@echo
+
+pypi:
+	@python setup.py register sdist bdist upload 
+
+@github:
+	@git push github
 
 check:
 	@make check-syntax || true
