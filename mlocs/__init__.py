@@ -1,57 +1,38 @@
-"""## mlocs - sensible location storage...
-# 
-# mlocs provides a simple, yet effective location hashing algorithm.
-# it's not super precise (> 750m.) but it provides perfect results.
-#
-# There are 5 levels available.
-# Lvl 1 : World Scope
-# Lvl 2 : Region Scope
-# Lvl 3 : Metro Scope
-# Lvl 4 : City Scope
-# Lvl 5 : I See You
-#
+"""## mlocs - Maidenhead
 # toMaiden([lat, lon], level) returns a char (len = lvl*2)
 # toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
 """
-import math
-import random
-import re,string
-def f(z):
-    """Used in the toLoc-function. That's about all I can tell ya :)
-    """
-    return 10**(-(z-1)/2)*24**(-z/2) 
-	#this is my stroke of genius or something
 
 def toLoc(maiden):
     """Takes any(!) maidenloc (<22) and returns 
     a location tupel [lat,lon]
     """
-    A = ord('A')
-    lon = -90
-    lat = -90
-    lets=re.findall(r'([A-Xa-x])([A-Xa-x])', maiden) 
-    nums=re.findall(r'(\d)(\d)', maiden)
-    i = 0
-    tot = 0
-    val = range(0,len(lets)+len(nums))
-    for m in val:
-        val[m] = None
-    for x,y in lets:
-        val[i*2]=(ord(string.upper(x))-A,ord(string.upper(y))-A)
-        i += 1
-        tot += 1
-    i = 0
-    for x,y in nums:
-        val[i*2+1]=(string.atoi(x),string.atoi(y))
-        i += 1
-        tot += 1
-    i = 0
-    for x,y in val[0:len(lets)+len(nums)]:
-        lon += f(i-1) * x
-        lat += f(i-1) * y
-        i += 1
-    lon *= 2
-    return [lat,lon]
+    assert isinstance(maiden,str),'Maidenhead is a string'
+    
+    N = len(maiden)
+    assert 8>=N>2 and N%2==0,'Maidenhead locator requires 2-8 characters, even number of characters'
+
+    O = ord('A')
+    o = ord('a')
+    lon = -180
+    lat = -90 
+#%% first two letters
+    lon += (ord(maiden[0])-O)*20
+    lat += (ord(maiden[1])-O)*10
+#%% second two letters
+    if N>=4:
+        lon += int(maiden[2])*2
+        lat += int(maiden[3])*1
+#%%
+    if N>=6:
+        lon += (ord(maiden[4])-o) * 5/60
+        lat += (ord(maiden[5])-o) * 2.5/60
+#%% 
+    if N>=8:
+        lon += int(maiden[6]) * 5/600
+        lat += int(maiden[7]) * 2.5/600
+    
+    return lat,lon
 
 def toMaiden(position, precision=4):
     """Returns a maidenloc for specified lat-lon tupel at specified 
