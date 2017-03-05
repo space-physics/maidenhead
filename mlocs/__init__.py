@@ -34,9 +34,9 @@ def toLoc(maiden):
     
     return lat,lon
 
-def toMaiden(position, precision=2):
+def toMaiden(position, precision=3):
     """Returns a maidenloc for specified lat-lon tupel at specified 
-    level. (4 being the default)
+    level. 
     """
     assert len(position)==2,'lat lon required'
     lat = float(position[0])
