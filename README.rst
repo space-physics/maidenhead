@@ -7,11 +7,16 @@ Maidenhead allows global location precision down to 750m
 
 
 Maidenhead provides 5 levels of increasing accuracy
-Lvl 1 : World Scope
-Lvl 2 : Region Scope
-Lvl 3 : Metro Scope
-Lvl 4 : City Scope
-Lvl 5 : I See You
+
+========  =========
+Level     Precision
+========  =========
+1          World 
+2          Regional
+3          Metropolis
+4          City
+5          Neighborhood
+========  =========
 
 Examples
 =========
