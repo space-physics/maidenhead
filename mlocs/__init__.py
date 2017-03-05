@@ -65,18 +65,20 @@ def toMaiden(position, precision=3):
 
     return astring
 
-def genGoogleMap(mloc=""):
-	if mloc:
-		position = toLoc(mloc)
-		strout = "http://maps.googleapis.com/maps/api/staticmap?"
-		strout += "center=" + str(position[0])
-		strout += "," + str(position[1])
-		strout += "&zoom=10&size=320x240&sensor=false"
-		return strout
+def genGoogleMap(mloc):
+
+    position = toLoc(mloc)
+    strout = "http://maps.googleapis.com/maps/api/staticmap?"
+    strout += "center=" + str(position[0])
+    strout += "," + str(position[1])
+    strout += "&zoom=10&size=320x240&sensor=false"
+	
+    return strout
 	
 def genNonSense(loc, level=3):
-	lat = loc[0]
-	lon = loc[1]
-	mloc = toMaiden([lat,lon],level)
-	return "http://no.nonsense.ee/qthmap/?qth=" + mloc
+    lat = loc[0]
+    lon = loc[1]
+    mloc = toMaiden([lat,lon],level)
+    
+    return "http://no.nonsense.ee/qthmap/?qth=" + mloc
 		
