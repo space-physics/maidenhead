@@ -34,12 +34,14 @@ def toLoc(maiden):
     
     return lat,lon
 
-def toMaiden(position, precision=4):
+def toMaiden(position, precision=2):
     """Returns a maidenloc for specified lat-lon tupel at specified 
     level. (4 being the default)
     """
-    lat = position[0]
-    lon = position[1]
+    assert len(position)==2,'lat lon required'
+    lat = float(position[0])
+    lon = float(position[1])
+    
     A = ord('A')
     a = divmod(lon+180, 20)
     b = divmod(lat+90, 10)

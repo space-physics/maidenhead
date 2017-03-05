@@ -4,7 +4,7 @@ import mlocs
 from argparse import ArgumentParser
 p = ArgumentParser()
 p.add_argument('loc',help='Maidenhead grid or lat lon',nargs='+')
-p.add_argument('-p','--precision',help='maidenhead precision',type=int,default=6)
+p.add_argument('-p','--precision',help='maidenhead precision',type=int,default=3)
 p = p.parse_args()
 
 
