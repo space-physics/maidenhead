@@ -1,6 +1,8 @@
 """## mlocs - Maidenhead
-# toMaiden([lat, lon], level) returns a char (len = lvl*2)
-# toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
+toMaiden([lat, lon], level) returns a char (len = lvl*2)
+toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
+
+Beyond 8 characters is not defined for Maidenhead.
 """
 
 def toLoc(maiden):
@@ -16,10 +18,10 @@ def toLoc(maiden):
     o = ord('a')
     lon = -180
     lat = -90 
-#%% first two letters
+#%% first pair
     lon += (ord(maiden[0])-O)*20
     lat += (ord(maiden[1])-O)*10
-#%% second two letters
+#%% second pair
     if N>=4:
         lon += int(maiden[2])*2
         lat += int(maiden[3])*1
