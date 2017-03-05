@@ -18,17 +18,23 @@ Level     Precision
 5          Neighborhood
 ========  =========
 
+Install
+=======
+::
+
+    python setup.py develop
+
 Examples
 =========
 ::
     
-    toMaiden([lat, lon], level) 
+    mlocs.toMaiden([lat, lon], level) 
 
 returns a char (len = lvl*2)
 
 ::
 
-    toLoc(mloc) 
+    mlocs.toLoc(mloc) 
 
 take any string and returns topleft [lat,lon] within Maidenhead grid.
 
