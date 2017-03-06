@@ -4,7 +4,7 @@ from setuptools import setup
 setup(
     name = "mlocs",
     packages = ["mlocs"],
-    version = "1.0.4",
+    version = "1.1.0",
     description = "Effective Location Storage via a Maidenhead Locator System For Python",
     author = "Henri Kuiper",
     author_email = "henrikuiper@zdevops.com",
