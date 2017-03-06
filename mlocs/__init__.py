@@ -10,6 +10,7 @@ def toLoc(maiden):
     a location tupel [lat,lon]
     """
     assert isinstance(maiden,str),'Maidenhead is a string'
+    maiden = maiden.strip()
     
     N = len(maiden)
     assert 8>=N>2 and N%2==0,'Maidenhead locator requires 2-8 characters, even number of characters'
