@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import mlocs
+import maidenhead
 
 from argparse import ArgumentParser
 p = ArgumentParser()
@@ -10,10 +10,10 @@ p = p.parse_args()
 
 
 if len(p.loc) == 1: #maidenhead
-    lat,lon = mlocs.toLoc(p.loc[0])
+    lat,lon = maidenhead.toLoc(p.loc[0])
     print(lat,lon)
 elif len(p.loc) == 2: #lat lon
-    maidenhead = mlocs.toMaiden(p.loc, p.precision)
+    maidenhead = maidenhead.toMaiden(p.loc, p.precision)
     print(maidenhead)
 else:
     raise TypeError('specify Maidenhead grid (single string) or lat lon (with space between)')

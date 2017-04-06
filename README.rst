@@ -1,12 +1,12 @@
 ======================================
-mlocs: Maidenhead <-> Lat/Lon
+Maidenhead <-> Lat/Lon
 ======================================
 
-``mlocs`` provides a simple, yet effective location hashing algorithm.
+``maidenhead`` provides a simple, yet effective location hashing algorithm.
 Maidenhead allows global location precision down to 750m 
 
 
-Maidenhead provides 5 levels of increasing accuracy
+Maidenhead provides 4 levels of increasing accuracy
 
 ========  =========
 Level     Precision
@@ -15,7 +15,6 @@ Level     Precision
 2          Regional
 3          Metropolis
 4          City
-5          Neighborhood
 ========  =========
 
 Install
@@ -28,13 +27,13 @@ Examples
 =========
 ::
     
-    mlocs.toMaiden([lat, lon], level) 
+    maidenhead.toMaiden([lat, lon], level) 
 
 returns a char (len = lvl*2)
 
 ::
 
-    mlocs.toLoc(mloc) 
+    maidenhead.toLoc('AB01cd') 
 
-take any string and returns topleft [lat,lon] within Maidenhead grid.
+take any string and returns topleft [lat,lon] of Maidenhead grid square.
 

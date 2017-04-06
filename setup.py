@@ -1,22 +1,17 @@
+#!/usr/bin/env python
 from setuptools import setup
 
 
 setup(
-    name = "mlocs",
-    packages = ["mlocs"],
+    name = "maidenhead",
+    packages = ["maidenhead"],
     version = "1.1.0",
-    description = "Effective Location Storage via a Maidenhead Locator System For Python",
-    author = "Henri Kuiper",
-    author_email = "henrikuiper@zdevops.com",
-	url = "http://zdevops.tumblr.com/post/36617019481/mlocs",
-    download_url = "",
-    keywords = ["location", "maidenhead", "effective"],
+    description = "Maidenhead Locator",
+    author = ['Michael Hirsch',"Henri Kuiper"],
+	url = "http://github.com/scivision/maidenhead",
+    keywords = ["location", "maidenhead"],
     classifiers = [
-        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Development Status :: 4 - Beta",
-        "Environment :: Other Environment",
-        "Intended Audience :: Developers",
-        "Operating System :: OS Independent",
         ],
 )
