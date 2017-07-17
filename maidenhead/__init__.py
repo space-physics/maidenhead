@@ -29,11 +29,11 @@ def toLoc(maiden):
         lat += int(maiden[3])*1
 #%%
     if N>=6:
-        lon += (ord(maiden[4])-o) * 5/60
+        lon += (ord(maiden[4])-o) * 5.0/60
         lat += (ord(maiden[5])-o) * 2.5/60
 #%%
     if N>=8:
-        lon += int(maiden[6]) * 5/600
+        lon += int(maiden[6]) * 5.0/600
         lat += int(maiden[7]) * 2.5/600
 
     return lat,lon
