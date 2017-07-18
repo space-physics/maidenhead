@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/scivision/maidenhead.svg?branch=master
+    :target: https://travis-ci.org/scivision/maidenhead
+
 ======================================
 Maidenhead <-> Lat/Lon
 ======================================
