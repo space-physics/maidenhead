@@ -28,6 +28,10 @@ class BasicTests(unittest.TestCase):
         g1 = maidenhead.genGoogleMap(m1)
         self.assertNotEqual(g,g1)
 
+    def test_decimals(self):
+        lat, lon = maidenhead.toLoc('JO32ii09')
+        self.assertEqual(lat, 52.37083333333334)
+        self.assertEqual(lon, 6.666666666666667)
 
 if __name__ == '__main__':
     unittest.main()
