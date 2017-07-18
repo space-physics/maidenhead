@@ -33,6 +33,6 @@ class BasicTests(unittest.TestCase):
         self.assertEqual(lat, 52.37083333333334)
         self.assertEqual(lon, 6.666666666666667)
 
-
+        
 if __name__ == '__main__':
     unittest.main()

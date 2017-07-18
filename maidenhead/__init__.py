@@ -29,11 +29,11 @@ def toLoc(maiden):
         lat += int(maiden[3])*1
 #%%
     if N>=6:
-        lon += (ord(maiden[4])-o) * 5.0/60
+        lon += (ord(maiden[4])-o) * 5./60
         lat += (ord(maiden[5])-o) * 2.5/60
 #%%
     if N>=8:
-        lon += int(maiden[6]) * 5.0/600
+        lon += int(maiden[6]) * 5./600
         lat += int(maiden[7]) * 2.5/600
 
     return lat,lon
@@ -49,7 +49,7 @@ def toMaiden(position, precision=3):
     a = divmod(lon+180, 20)
     b = divmod(lat+90, 10)
     astring = chr(A+int(a[0])) + chr(A+int(b[0]))
-    lon = a[1]/2
+    lon = a[1] / 2.
     lat = b[1]
     i = 1
     while i < precision:
@@ -72,10 +72,10 @@ def toMaiden(position, precision=3):
 
 def genGoogleMap(mloc):
 
-    position = toLoc(mloc)
+    gpos = toLoc(mloc)
     strout = "http://maps.googleapis.com/maps/api/staticmap?"
-    strout += "center=" + str(position[0])
-    strout += "," + str(position[1])
+    strout += "center={}".format(gpos[0])
+    strout += ",{}".format(gpos[1])
     strout += "&zoom=10&size=320x240&sensor=false"
 
     return strout
@@ -86,4 +86,3 @@ def genNonSense(loc, level=3):
     mloc = toMaiden([lat,lon],level)
 
     return "http://no.nonsense.ee/qthmap/?qth=" + mloc
-

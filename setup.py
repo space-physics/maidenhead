@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name = "maidenhead",
     packages = ["maidenhead"],
-    version = "1.1.0",
+    version = "1.1.1",
     description = "Maidenhead Locator",
     author = ['Michael Hirsch',"Henri Kuiper"],
 	url = "http://github.com/scivision/maidenhead",
