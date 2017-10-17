@@ -14,7 +14,7 @@ def toLoc(maiden):
     maiden = maiden.strip()
 
     N = len(maiden)
-    assert 8>=N>2 and N%2==0,'Maidenhead locator requires 2-8 characters, even number of characters'
+    assert 8>=N>=2 and N%2==0,'Maidenhead locator requires 2-8 characters, even number of characters'
 
     O = ord('A')
     o = ord('a')
