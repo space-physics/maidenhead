@@ -11,13 +11,12 @@ def toLoc(maiden):
     output: [lat,lon]
     """
     assert isinstance(maiden,str),'Maidenhead is a string'
-    maiden = maiden.strip()
+    maiden = maiden.strip().upper()
 
     N = len(maiden)
     assert 8>=N>=2 and N%2==0,'Maidenhead locator requires 2-8 characters, even number of characters'
 
     O = ord('A')
-    o = ord('a')
     lon = -180
     lat = -90
 #%% first pair
@@ -29,8 +28,8 @@ def toLoc(maiden):
         lat += int(maiden[3])*1
 #%%
     if N>=6:
-        lon += (ord(maiden[4])-o) * 5./60
-        lat += (ord(maiden[5])-o) * 2.5/60
+        lon += (ord(maiden[4])-O) * 5./60
+        lat += (ord(maiden[5])-O) * 2.5/60
 #%%
     if N>=8:
         lon += int(maiden[6]) * 5./600
