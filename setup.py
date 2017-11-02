@@ -5,10 +5,10 @@ from setuptools import setup
 setup(
     name = "maidenhead",
     packages = ["maidenhead"],
-    version = "1.1.1",
+    version = "1.1.2",
     description = "Maidenhead Locator",
     author = ['Michael Hirsch',"Henri Kuiper"],
-	url = "http://github.com/scivision/maidenhead",
+	url = "https://github.com/scivision/maidenhead",
     keywords = ["location", "maidenhead"],
     classifiers = [
         "Programming Language :: Python :: 3",

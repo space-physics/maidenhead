@@ -10,7 +10,7 @@ def toLoc(maiden):
     input: maidenhead locator of length 2 to 8
     output: [lat,lon]
     """
-    assert isinstance(maiden,str),'Maidenhead is a string'
+    assert isinstance(maiden, str), 'Maidenhead is a string'
     maiden = maiden.strip().upper()
 
     N = len(maiden)
