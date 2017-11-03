@@ -1,5 +1,13 @@
 .. image:: https://travis-ci.org/scivision/maidenhead.svg?branch=master
     :target: https://travis-ci.org/scivision/maidenhead
+    
+.. image:: https://coveralls.io/repos/github/scivision/maidenhead/badge.svg?branch=master
+    :target: https://coveralls.io/github/scivision/maidenhead?branch=master
+
+    
+.. image:: https://api.codeclimate.com/v1/badges/6ac63c6a3ec7a22c3d87/maintainability
+   :target: https://codeclimate.com/github/scivision/maidenhead/maintainability
+   :alt: Maintainability
 
 ======================================
 Maidenhead <-> Lat/Lon
