@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+req = ['nose']
+
 from setuptools import setup
 
 
@@ -14,4 +16,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Development Status :: 4 - Beta",
         ],
+    install_requires=req,
+    python_requires='>=2.7',
 )
