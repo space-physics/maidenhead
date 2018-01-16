@@ -47,3 +47,14 @@ returns a char (len = lvl*2)
 
 take any string and returns topleft [lat,lon] of Maidenhead grid square.
 
+Command Line
+-------------------
+Python::
+
+    ./Maidenhead.py 65 -148
+    
+    
+Julia::
+
+    ./Maidenhead.jl 65 -148
+
