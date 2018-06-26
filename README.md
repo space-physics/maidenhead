@@ -1,6 +1,5 @@
 [![image](https://travis-ci.org/scivision/maidenhead.svg?branch=master)](https://travis-ci.org/scivision/maidenhead)
 [![image](https://coveralls.io/repos/github/scivision/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/scivision/maidenhead?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6ac63c6a3ec7a22c3d87/maintainability)](https://codeclimate.com/github/scivision/maidenhead/maintainability)
 [![Build status](https://ci.appveyor.com/api/projects/status/4b44p65o33088top?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![pypi format](https://img.shields.io/pypi/format/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
