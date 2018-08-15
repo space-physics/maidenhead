@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 import maidenhead
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
 
 
-def cmdparse() -> Namespace:
+def main():
     p = ArgumentParser()
     p.add_argument('loc', help='Maidenhead grid or lat lon', nargs='+')
     p.add_argument('-p', '--precision', help='maidenhead precision', type=int, default=3)
-    return p.parse_args()
+    p = p.parse_args()
 
-
-def main(p: Namespace):
     if len(p.loc) == 1:  # maidenhead
         lat, lon = maidenhead.toLoc(p.loc[0])
         print(lat, lon)
@@ -22,4 +20,4 @@ def main(p: Namespace):
 
 
 if __name__ == '__main__':
-    main(cmdparse())
+    main()

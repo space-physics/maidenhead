@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import pytest
 import maidenhead
-from math import isclose
+from pytest import approx
 
 # Fixed points that can be used for testing
 casa_henri = (52.3726967, 6.6725457)
@@ -34,9 +34,9 @@ def test_genmap():
 
 def test_decimals():
     lat, lon = maidenhead.toLoc('JO32ii09')
-    assert isclose(lat, 52.37083333333334)
-    assert isclose(lon, 6.666666666666667)
+    assert lat == approx(52.37083333333334)
+    assert lon == approx(6.666666666666667)
 
 
 if __name__ == '__main__':
-    pytest.main()
+    pytest.main(['-x', __file__])
