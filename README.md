@@ -2,7 +2,6 @@
 [![image](https://coveralls.io/repos/github/scivision/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/scivision/maidenhead?branch=master)
 [![Build status](https://ci.appveyor.com/api/projects/status/4b44p65o33088top?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
-[![pypi format](https://img.shields.io/pypi/format/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
 # Maidenhead &lt;-&gt; Lat/Lon
@@ -31,7 +30,7 @@ import maidenhead as mh
    
 ### lat lon to Maidenhead locator
 ```python
-mh.toMaiden([lat, lon], level) 
+mh.toMaiden(lat, lon, level) 
 ```
 returns a char (len = lvl*2)
 
@@ -39,7 +38,7 @@ returns a char (len = lvl*2)
 ```python
 mh.toLoc('AB01cd') 
 ```
-take any string and returns topleft [lat, lon] of Maidenhead grid square.
+take any string and returns topleft lat, lon of Maidenhead grid square.
 
 ## Command Line
 

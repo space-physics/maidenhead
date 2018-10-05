@@ -1,4 +1,4 @@
-from typing import Tuple, List, Union
+from typing import Tuple
 """## mlocs - Maidenhead
 toMaiden([lat, lon], level) returns a char (len = lvl*2)
 toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
@@ -42,13 +42,10 @@ def toLoc(maiden: str) -> Tuple[float, float]:
     return lat, lon
 
 
-def toMaiden(position: List[Union[str, float, int]],
+def toMaiden(lat: float, lon: float,
              precision: int=3) -> str:
     """Returns a maidenloc for specified lat-lon tuple at specified level.
     """
-    assert len(position) == 2, 'lat lon required'
-    lat = float(position[0])
-    lon = float(position[1])
 
     A = ord('A')
     a = divmod(lon+180, 20)
@@ -87,8 +84,7 @@ def genGoogleMap(mloc: str) -> str:
     return strout
 
 
-def genNonSense(loc: List[Union[str, float, int]],
-                level: int=3) -> str:
-    mloc = toMaiden(loc[:2], level)
+def genNonSense(lat: float, lon: float, level: int=3) -> str:
+    mloc = toMaiden(lat, lon, level)
 
     return "http://no.nonsense.ee/qthmap/?qth=" + mloc

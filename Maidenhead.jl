@@ -1,8 +1,8 @@
 #!/usr/bin/env julia
 
-using ArgParse
+using Test
 
-function toMaiden(lat, lon; precision=3)
+function toMaiden(lat::Real, lon::Real; precision::Int=3)
     #Returns a maidenloc for specified lat-lon tuple at specified level.
 
   a = divrem(lon+180, 20)
@@ -38,20 +38,47 @@ function toMaiden(lat, lon; precision=3)
 end
 
 
+function toLoc(maiden::String)
 
-s = ArgParseSettings()
-@add_arg_table s begin
-    "lat"
-        help = "latitude"
-        arg_type = Float64
-        required = true
-    "lon"
-        help = "longitude"
-        arg_type = Float64
-        required = true
+    maiden = uppercase(maiden)
+
+    N = length(maiden)
+
+    Oa = Char('A')
+    lon = -180.
+    lat = -90.
+# %% first pair
+    lon += (Char(maiden[1])-Oa)*20
+    lat += (Char(maiden[2])-Oa)*10
+# %% second pair
+    if N >= 4
+        lon += parse(Int, maiden[3])*2
+        lat += parse(Int, maiden[4])*1
+    end
+    if N >= 6
+        lon += (Char(maiden[5])-Oa) * 5.0/60
+        lat += (Char(maiden[6])-Oa) * 2.5/60
+    end
+    if N >= 8
+        lon += parse(Int, maiden[7]) * 5.0/600
+        lat += parse(Int, maiden[8]) * 2.5/600
+    end
+    
+    return (lat, lon)
 end
-s = parse_args(s)
 
-maiden = toMaiden(s["lat"], s["lon"], precision=3)
 
-println(maiden)
+if basename(PROGRAM_FILE) == basename(@__FILE__)
+
+  if length(ARGS) == 2
+    println(toMaiden(ARGS[1], ARGS[2], precision=3))
+  elseif length(ARGS) == 1
+    println(toLoc(ARGS[1]))
+  else
+    @test toMaiden(40, -50) == "GN50aa"
+  
+    lat, lon = toLoc("JO32ii09")
+    @test isapprox(lat, 52.37083333333334)
+    @test isapprox(lon, 6.666666666666667)
+  end
+end

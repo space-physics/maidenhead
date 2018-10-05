@@ -13,7 +13,7 @@ def main():
         lat, lon = maidenhead.toLoc(p.loc[0])
         print(lat, lon)
     elif len(p.loc) == 2:  # lat lon
-        loc = maidenhead.toMaiden(p.loc, p.precision)
+        loc = maidenhead.toMaiden(p.loc[0], p.loc[1], p.precision)
         print(loc)
     else:
         raise TypeError('specify Maidenhead grid (single string) or lat lon (with space between)')
