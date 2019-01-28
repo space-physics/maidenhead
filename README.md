@@ -18,9 +18,12 @@ Maidenhead provides 4 levels of increasing accuracy
   3     |  Metropolis
   4     |  City
 
-## Install
+We also have [Maidenhead conversion for Julia](https://github.com/scivision/maidenhead-julia)
 
-    pip install -e .
+## Install
+```sh
+pip install -e .
+```
 
 ## Examples
 All examples assume first doing
@@ -43,9 +46,6 @@ take any string and returns topleft lat, lon of Maidenhead grid square.
 ## Command Line
 
 Python:
-
-    Maidenhead.py 65 -148
-
-Julia:
-
-    ./Maidenhead.jl 65 -148
+```sh
+Maidenhead.py 65 -148
+```
