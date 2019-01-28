@@ -27,6 +27,7 @@ def test_genmap():
     """Test level maps are different"""
     m = maidenhead.toMaiden(*casa_henri, 3)
     g = maidenhead.genGoogleMap(m)
+
     m1 = maidenhead.toMaiden(*casa_henri, 2)
     g1 = maidenhead.genGoogleMap(m1)
     assert g != g1

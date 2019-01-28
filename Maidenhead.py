@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import maidenhead
 from argparse import ArgumentParser
+import sys
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
         loc = maidenhead.toMaiden(p.loc[0], p.loc[1], p.precision)
         print(loc)
     else:
-        raise TypeError('specify Maidenhead grid (single string) or lat lon (with space between)')
+        print('specify Maidenhead grid (single string) or lat lon (with space between)', file=sys.stderr)
 
 
 if __name__ == '__main__':

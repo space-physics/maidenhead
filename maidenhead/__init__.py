@@ -18,7 +18,8 @@ def toLoc(maiden: str) -> Tuple[float, float]:
     maiden = maiden.strip().upper()
 
     N = len(maiden)
-    assert 8 >= N >= 2 and N % 2 == 0, 'Maidenhead locator requires 2-8 characters, even number of characters'
+    if not 8 >= N >= 2 and N % 2 == 0:
+        raise ValueError('Maidenhead locator requires 2-8 characters, even number of characters')
 
     Oa = ord('A')
     lon = -180.
@@ -43,14 +44,14 @@ def toLoc(maiden: str) -> Tuple[float, float]:
 
 
 def toMaiden(lat: float, lon: float,
-             precision: int=3) -> str:
-    """Returns a maidenloc for specified lat-lon tuple at specified level.
+             precision: int = 3) -> str:
+    """Returns a maidenhead string for specified lat-lon tuple at specified level.
     """
 
     A = ord('A')
     a = divmod(lon+180, 20)
     b = divmod(lat+90, 10)
-    astring: str = chr(A+int(a[0])) + chr(A+int(b[0]))
+    astring = chr(A+int(a[0])) + chr(A+int(b[0]))
     lon = a[1] / 2.
     lat = b[1]
     i = 1
@@ -76,15 +77,11 @@ def toMaiden(lat: float, lon: float,
 def genGoogleMap(mloc: str) -> str:
 
     gpos = toLoc(mloc)
-    strout = "http://maps.googleapis.com/maps/api/staticmap?"
-    strout += "center={}".format(gpos[0])
-    strout += ",{}".format(gpos[1])
-    strout += "&zoom=10&size=320x240&sensor=false"
 
-    return strout
+    return "http://maps.googleapis.com/maps/api/staticmap?center={},{}&zoom=10&size=320x240&sensor=false".format(gpos[0], gpos[1])
 
 
-def genNonSense(lat: float, lon: float, level: int=3) -> str:
+def genNonSense(lat: float, lon: float, level: int = 3) -> str:
     mloc = toMaiden(lat, lon, level)
 
-    return "http://no.nonsense.ee/qthmap/?qth=" + mloc
+    return "http://no.nonsense.ee/qthmap/?qth={}".format(mloc)
