@@ -18,7 +18,11 @@ Maidenhead provides 4 levels of increasing accuracy
   3     |  Metropolis
   4     |  City
 
-We also have [Maidenhead conversion for Julia](https://github.com/scivision/maidenhead-julia)
+We also have [Maidenhead conversion for Julia](https://github.com/scivision/maidenhead-julia).
+
+
+Open Location Codes a.k.a Plus Codes are in 
+[Python code by Google](https://github.com/google/open-location-code/tree/master/python).
 
 ## Install
 ```sh
