@@ -1,5 +1,7 @@
 from typing import Tuple
-"""## mlocs - Maidenhead
+"""
+Maidenhead grid conversion <==> latitude, longitude
+
 toMaiden([lat, lon], level) returns a char (len = lvl*2)
 toLoc(mloc) takes any string and returns topleft [lat,lon] within mloc
 
@@ -9,8 +11,19 @@ Beyond 8 characters is not defined for Maidenhead.
 
 def toLoc(maiden: str) -> Tuple[float, float]:
     """
-    input: maidenhead locator of length 2 to 8
-    output: [lat,lon]
+    convert Maidenhead grid to latitude, longitude
+
+    Parameters
+    ----------
+
+    maiden : str
+        Maidenhead grid locator of length 2 to 8
+
+    Returns
+    -------
+
+    latLon : tuple of float
+        Geographic latitude, longitude
     """
     if not isinstance(maiden, str):
         raise TypeError('Maidenhead locator must be a string')
@@ -43,15 +56,32 @@ def toLoc(maiden: str) -> Tuple[float, float]:
     return lat, lon
 
 
-def toMaiden(lat: float, lon: float,
-             precision: int = 3) -> str:
-    """Returns a maidenhead string for specified lat-lon tuple at specified level.
+def toMaiden(lat: float, lon: float = None,
+             *, precision: int = 3) -> str:
+    """
+    Returns a maidenhead string for latitude, longitude at specified level.
+
+    Parameters
+    ----------
+
+    lat : float or tuple of float
+        latitude or tuple of latitude, longitude
+    lon : float, optional
+        longitude (if not given tuple)
+    precision : int, optional
+        level of precision (length of maidenhead grid string output)
+
+    Returns
+    -------
+
+    maiden : str
+        Maidenhead grid string of specified precision
     """
 
     A = ord('A')
     a = divmod(lon+180, 20)
     b = divmod(lat+90, 10)
-    astring = chr(A+int(a[0])) + chr(A+int(b[0]))
+    maiden = chr(A+int(a[0])) + chr(A+int(b[0]))
     lon = a[1] / 2.
     lat = b[1]
     i = 1
@@ -60,28 +90,40 @@ def toMaiden(lat: float, lon: float,
         a = divmod(lon, 1)
         b = divmod(lat, 1)
         if not (i % 2):
-            astring += str(int(a[0])) + str(int(b[0]))
+            maiden += str(int(a[0])) + str(int(b[0]))
             lon = 24 * a[1]
             lat = 24 * b[1]
         else:
-            astring += chr(A+int(a[0])) + chr(A+int(b[0]))
+            maiden += chr(A+int(a[0])) + chr(A+int(b[0]))
             lon = 10 * a[1]
             lat = 10 * b[1]
 
-    if len(astring) >= 6:
-        astring = astring[:4] + astring[4:6].lower() + astring[6:]
+    if len(maiden) >= 6:
+        maiden = maiden[:4] + maiden[4:6].lower() + maiden[6:]
 
-    return astring
-
-
-def genGoogleMap(mloc: str) -> str:
-
-    gpos = toLoc(mloc)
-
-    return "http://maps.googleapis.com/maps/api/staticmap?center={},{}&zoom=10&size=320x240&sensor=false".format(gpos[0], gpos[1])
+    return maiden
 
 
-def genNonSense(lat: float, lon: float, level: int = 3) -> str:
-    mloc = toMaiden(lat, lon, level)
+def google_maps(maiden: str) -> str:
+    """
+    generate Google Maps URL from Maidenhead grid
 
-    return "http://no.nonsense.ee/qthmap/?qth={}".format(mloc)
+    Parameters
+    ----------
+
+    maiden : str
+        Maidenhead grid
+
+    Results
+    -------
+
+    url : str
+        Google Maps URL
+    """
+
+    latlon = toLoc(maiden)
+
+    url = ('https://www.google.com/maps/@?api=1&map_action=map'
+           '&center={},{}'.format(latlon[0], latlon[1]))
+
+    return url
