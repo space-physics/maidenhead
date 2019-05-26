@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
 [![image](https://travis-ci.org/scivision/maidenhead.svg?branch=master)](https://travis-ci.org/scivision/maidenhead)
 [![image](https://coveralls.io/repos/github/scivision/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/scivision/maidenhead?branch=master)
 [![Build status](https://ci.appveyor.com/api/projects/status/4b44p65o33088top?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
@@ -21,7 +22,7 @@ Maidenhead provides 4 levels of increasing accuracy
 We also have [Maidenhead conversion for Julia](https://github.com/scivision/maidenhead-julia).
 
 
-Open Location Codes a.k.a Plus Codes are in 
+Open Location Codes a.k.a Plus Codes are in
 [Python code by Google](https://github.com/google/open-location-code/tree/master/python).
 
 ## Install
@@ -34,16 +35,16 @@ All examples assume first doing
 ```python
 import maidenhead as mh
 ```
-   
+
 ### lat lon to Maidenhead locator
 ```python
-mh.toMaiden(lat, lon, level) 
+mh.toMaiden(lat, lon, level)
 ```
 returns a char (len = lvl*2)
 
 ### Maidenhead locator to lat lon
 ```python
-mh.toLoc('AB01cd') 
+mh.toLoc('AB01cd')
 ```
 take any string and returns topleft lat, lon of Maidenhead grid square.
 
