@@ -1,7 +1,8 @@
 [![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
-[![image](https://travis-ci.org/scivision/maidenhead.svg?branch=master)](https://travis-ci.org/scivision/maidenhead)
-[![image](https://coveralls.io/repos/github/scivision/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/scivision/maidenhead?branch=master)
-[![Build status](https://ci.appveyor.com/api/projects/status/4b44p65o33088top?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
+
+[![Build Status](https://travis-ci.org/space-physics/maidenhead.svg?branch=master)](https://travis-ci.org/space-physics/maidenhead)
+[![Coverage Status](https://coveralls.io/repos/github/space-physics/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/space-physics/maidenhead?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/g4dlktk2a2rwkoa6?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
