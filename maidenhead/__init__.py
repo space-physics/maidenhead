@@ -1,4 +1,5 @@
 from typing import Tuple
+
 """
 Maidenhead grid conversion <==> latitude, longitude
 
@@ -26,38 +27,37 @@ def toLoc(maiden: str) -> Tuple[float, float]:
         Geographic latitude, longitude
     """
     if not isinstance(maiden, str):
-        raise TypeError('Maidenhead locator must be a string')
+        raise TypeError("Maidenhead locator must be a string")
 
     maiden = maiden.strip().upper()
 
     N = len(maiden)
     if not 8 >= N >= 2 and N % 2 == 0:
-        raise ValueError('Maidenhead locator requires 2-8 characters, even number of characters')
+        raise ValueError("Maidenhead locator requires 2-8 characters, even number of characters")
 
-    Oa = ord('A')
-    lon = -180.
-    lat = -90.
-# %% first pair
-    lon += (ord(maiden[0])-Oa)*20
-    lat += (ord(maiden[1])-Oa)*10
-# %% second pair
+    Oa = ord("A")
+    lon = -180.0
+    lat = -90.0
+    # %% first pair
+    lon += (ord(maiden[0]) - Oa) * 20
+    lat += (ord(maiden[1]) - Oa) * 10
+    # %% second pair
     if N >= 4:
-        lon += int(maiden[2])*2
-        lat += int(maiden[3])*1
-# %%
+        lon += int(maiden[2]) * 2
+        lat += int(maiden[3]) * 1
+    # %%
     if N >= 6:
-        lon += (ord(maiden[4])-Oa) * 5./60
-        lat += (ord(maiden[5])-Oa) * 2.5/60
-# %%
+        lon += (ord(maiden[4]) - Oa) * 5.0 / 60
+        lat += (ord(maiden[5]) - Oa) * 2.5 / 60
+    # %%
     if N >= 8:
-        lon += int(maiden[6]) * 5./600
-        lat += int(maiden[7]) * 2.5/600
+        lon += int(maiden[6]) * 5.0 / 600
+        lat += int(maiden[7]) * 2.5 / 600
 
     return lat, lon
 
 
-def toMaiden(lat: float, lon: float = None,
-             *, precision: int = 3) -> str:
+def toMaiden(lat: float, lon: float = None, *, precision: int = 3) -> str:
     """
     Returns a maidenhead string for latitude, longitude at specified level.
 
@@ -78,11 +78,11 @@ def toMaiden(lat: float, lon: float = None,
         Maidenhead grid string of specified precision
     """
 
-    A = ord('A')
-    a = divmod(lon+180, 20)
-    b = divmod(lat+90, 10)
-    maiden = chr(A+int(a[0])) + chr(A+int(b[0]))
-    lon = a[1] / 2.
+    A = ord("A")
+    a = divmod(lon + 180, 20)
+    b = divmod(lat + 90, 10)
+    maiden = chr(A + int(a[0])) + chr(A + int(b[0]))
+    lon = a[1] / 2.0
     lat = b[1]
     i = 1
     while i < precision:
@@ -94,7 +94,7 @@ def toMaiden(lat: float, lon: float = None,
             lon = 24 * a[1]
             lat = 24 * b[1]
         else:
-            maiden += chr(A+int(a[0])) + chr(A+int(b[0]))
+            maiden += chr(A + int(a[0])) + chr(A + int(b[0]))
             lon = 10 * a[1]
             lat = 10 * b[1]
 
@@ -123,7 +123,8 @@ def google_maps(maiden: str) -> str:
 
     latlon = toLoc(maiden)
 
-    url = ('https://www.google.com/maps/@?api=1&map_action=map'
-           '&center={},{}'.format(latlon[0], latlon[1]))
+    url = "https://www.google.com/maps/@?api=1&map_action=map" "&center={},{}".format(
+        latlon[0], latlon[1]
+    )
 
     return url
