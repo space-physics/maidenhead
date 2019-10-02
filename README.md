@@ -1,8 +1,8 @@
 [![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
 
-[![Build Status](https://travis-ci.org/space-physics/maidenhead.svg?branch=master)](https://travis-ci.org/space-physics/maidenhead)
-[![Coverage Status](https://coveralls.io/repos/github/space-physics/maidenhead/badge.svg?branch=master)](https://coveralls.io/github/space-physics/maidenhead?branch=master)
-[![Build status](https://ci.appveyor.com/api/projects/status/g4dlktk2a2rwkoa6?svg=true)](https://ci.appveyor.com/project/scivision/maidenhead)
+[![Actions Status](https://github.com/space-physics/maidenhead/workflows/ci/badge.svg)](https://github.com/space-physics/maidenhead/actions)
+
+
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
@@ -28,7 +28,7 @@ Open Location Codes a.k.a Plus Codes are in
 
 ## Install
 ```sh
-pip install -e .
+pip install maidenhead
 ```
 
 ## Examples
@@ -53,5 +53,5 @@ take any string and returns topleft lat, lon of Maidenhead grid square.
 
 Python:
 ```sh
-Maidenhead.py 65 -148
+python Maidenhead.py 65 -148
 ```
