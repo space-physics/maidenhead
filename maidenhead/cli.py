@@ -1,22 +1,30 @@
-#!/usr/bin/env python
-import maidenhead
-from argparse import ArgumentParser
 import sys
+from argparse import ArgumentParser
+
+import maidenhead
 
 
-def main():
+def fetch(input_args):
     p = ArgumentParser()
-    p.add_argument("loc", help="Maidenhead grid or lat lon", nargs="+")
+    p.add_argument(
+        "loc", help="Maidenhead grid (single string) or lat lon (with space between)", nargs="+"
+    )
     p.add_argument("-p", "--precision", help="maidenhead precision", type=int, default=3)
     p.add_argument("-u", "--url", help="also output Google Maps URL", action="store_true")
-    p = p.parse_args()
+    return p.parse_args(input_args)
 
-    if len(p.loc) == 1:  # maidenhead
-        maiden = p.loc[0]
-        lat, lon = maidenhead.toLoc(maiden)
+
+def main(input_args):
+    args = fetch(input_args)
+
+    if len(args.loc) == 1:  # maidenhead
+        maiden = args.loc[0]
+        lat, lon = maidenhead.to_location(maiden)
         print(lat, lon)
-    elif len(p.loc) == 2:  # lat lon
-        maiden = maidenhead.toMaiden(p.loc[0], p.loc[1], p.precision)
+    elif len(args.loc) == 2:  # lat lon
+        maiden = maidenhead.to_maiden(
+            lat=float(args.loc[0]), lon=float(args.loc[1]), precision=args.precision
+        )
         print(maiden)
     else:
         print(
@@ -24,9 +32,13 @@ def main():
             file=sys.stderr,
         )
 
-    if p.url:
+    if args.url:
         print(maidenhead.google_maps(maiden))
 
 
+def run():
+    main(sys.argv[1:])
+
+
 if __name__ == "__main__":
-    main()
+    run()
