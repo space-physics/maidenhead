@@ -61,8 +61,16 @@ take any string and returns topleft lat, lon of Maidenhead grid square.
 Python:
 
 ```sh
-python Maidenhead.py 65 -148
+maidenhead 65 -148
 ```
+
+> BP65aa
+
+```sh
+maidenhead BP65aa12
+```
+
+> 65.00833333333334 -147.99166666666667
 
 ## Alternatives
 
