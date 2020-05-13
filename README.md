@@ -2,6 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
 ![Actions Status](https://github.com/space-physics/maidenhead/workflows/ci/badge.svg)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/space-physics/maidenhead.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/space-physics/maidenhead/context:python)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
