@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pytest
 import maidenhead
 from pytest import approx

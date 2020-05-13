@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pytest
 import maidenhead as mh
 
@@ -20,7 +19,3 @@ def test_GoogleMaps(latlon, maiden):
     assert m1 == maiden[:6]
     g1 = mh.google_maps(m1)
     assert g4 != g1
-
-
-if __name__ == "__main__":
-    pytest.main(["-x", __file__])
