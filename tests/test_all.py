@@ -15,15 +15,12 @@ def test_maiden2latlon(location):
     assert lon == approx(location.latlon[1], rel=0.0001)
 
 
-@pytest.mark.parametrize(
-    "latlon, maiden",
-    [(mcmurdo, "RB32id27"), (washington_monument, "FM18lv53"), (giza_pyramid, "KL59nx65")],
-)
-def test_maiden2latlon(latlon, maiden):
-    lat, lon = maidenhead.toLoc(maiden)
-    assert lat == approx(latlon[0], rel=0.0001)
-    assert lon == approx(latlon[1], rel=0.0001)
+@pytest.mark.parametrize("invalid_str", [None, 1, True, False])
+def test_invalid_maiden(invalid_str):
+    with pytest.raises(TypeError):
+        maidenhead.to_location(maiden=invalid_str)
 
 
-if __name__ == "__main__":
-    pytest.main(["-x", __file__])
+def test_invalid_maiden_len():
+    with pytest.raises(ValueError):
+        maidenhead.to_location(maiden="GG52qjjjjj")
