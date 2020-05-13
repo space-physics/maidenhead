@@ -10,7 +10,7 @@ Beyond 8 characters is not defined for Maidenhead.
 """
 
 
-def toLoc(maiden: str) -> Tuple[float, float]:
+def to_location(maiden: str) -> Tuple[float, float]:
     """
     convert Maidenhead grid to latitude, longitude
 
@@ -57,7 +57,7 @@ def toLoc(maiden: str) -> Tuple[float, float]:
     return lat, lon
 
 
-def toMaiden(lat: float, lon: float = None, *, precision: int = 3) -> str:
+def to_maiden(lat: float, lon: float = None, *, precision: int = 3) -> str:
     """
     Returns a maidenhead string for latitude, longitude at specified level.
 
@@ -121,10 +121,14 @@ def google_maps(maiden: str) -> str:
         Google Maps URL
     """
 
-    latlon = toLoc(maiden)
+    latlon = to_location(maiden)
 
     url = "https://www.google.com/maps/@?api=1&map_action=map" "&center={},{}".format(
         latlon[0], latlon[1]
     )
 
     return url
+
+
+toLoc = to_location
+toMaiden = to_maiden
