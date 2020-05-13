@@ -1,20 +1,18 @@
 import pytest
-import maidenhead
 from pytest import approx
 
-# Fixed points that can be used for testing
-mcmurdo = (-77.8419, 166.6863)
-washington_monument = (38.8895, -77.0353)
-giza_pyramid = (29.9792, 31.1342)
+import maidenhead
 
 
-@pytest.mark.parametrize(
-    "latlon, maiden",
-    [(mcmurdo, "RB32id27"), (washington_monument, "FM18lv53"), (giza_pyramid, "KL59nx65")],
-)
-def test_latlon2maiden(latlon, maiden):
-    m = maidenhead.toMaiden(*latlon)
-    assert m == maiden[:6]
+def test_latlon2maiden(location):
+    m = maidenhead.toMaiden(*location.latlon)
+    assert m == location.maiden[:6]
+
+
+def test_maiden2latlon(location):
+    lat, lon = maidenhead.toLoc(location.maiden)
+    assert lat == approx(location.latlon[0], rel=0.0001)
+    assert lon == approx(location.latlon[1], rel=0.0001)
 
 
 @pytest.mark.parametrize(
