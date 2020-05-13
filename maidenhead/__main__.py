@@ -1,1 +1,1 @@
-from maidenhead.cli import run  # noqa
+from maidenhead.cli import run
