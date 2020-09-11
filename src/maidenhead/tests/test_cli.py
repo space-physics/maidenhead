@@ -11,7 +11,7 @@ def test_convert_maiden_to_loc():
 def test_convert_loc_to_maiden():
     ret = subprocess.check_output(["maidenhead", "GG52qj"], universal_newlines=True)
 
-    assert ret.strip() == "-27.625 -48.666666666666664"
+    assert ret.strip() == "-27.6250 -48.6667"
 
 
 def test_invalid_loc_args():

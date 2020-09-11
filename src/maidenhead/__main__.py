@@ -14,7 +14,7 @@ def main():
 
     if len(args.loc) == 1:  # maidenhead
         maiden = args.loc[0]
-        print(*maidenhead.to_location(maiden))
+        print('{:.4f} {:.4f}'.format(*maidenhead.to_location(maiden)))
     elif len(args.loc) == 2:  # lat lon
         maiden = maidenhead.to_maiden(*map(float, args.loc), precision=args.precision)
         print(maiden)
