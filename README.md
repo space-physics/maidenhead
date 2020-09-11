@@ -6,8 +6,8 @@
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
-`maidenhead` provides a simple, yet effective location hashing
-algorithm. Maidenhead allows global location precision down to 750m
+`maidenhead` provides a simple, yet effective location hashing algorithm.
+Maidenhead allows global location precision down to 750m
 
 Maidenhead provides 4 levels of increasing accuracy
 
@@ -54,14 +54,14 @@ returns a char (len = lvl*2)
 mh.to_location('AB01cd')
 ```
 
-take any string and returns topleft lat, lon of Maidenhead grid square.
+takes Maidenhead location string and returns top-left lat, lon of Maidenhead grid square.
 
 ## Command Line
 
-Python:
+The command line interface takes either decimal degrees for "latitude longitude" or the Maidenhead locator string:
 
 ```sh
-maidenhead 65 -148
+maidenhead 65.0 -148.0
 ```
 
 > BP65aa
