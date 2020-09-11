@@ -1,49 +1,32 @@
 import pytest
-
-import maidenhead
-from maidenhead.cli import main
+import subprocess
 
 
-@pytest.fixture
-def maps_url_spy(mocker):
-    return mocker.spy(maidenhead, "google_maps")
+def test_convert_maiden_to_loc():
+    ret = subprocess.check_output(["maidenhead", "27", "34"], universal_newlines=True)
+
+    assert ret.strip() == "KL77aa"
 
 
-@pytest.fixture
-def to_location_spy(mocker):
-    return mocker.spy(maidenhead, "to_location")
+def test_convert_loc_to_maiden():
+    ret = subprocess.check_output(["maidenhead", "GG52qj"], universal_newlines=True)
+
+    assert ret.strip() == "-27.625 -48.666666666666664"
 
 
-@pytest.fixture
-def to_maiden_spy(mocker):
-    return mocker.spy(maidenhead, "to_maiden")
+def test_invalid_loc_args():
+    with pytest.raises(subprocess.CalledProcessError):
+        subprocess.check_output(["maidenhead", "GG52qj", "27.34", "23.98"])
 
 
-def test_convert_maiden_to_loc(to_location_spy, to_maiden_spy):
-    main(["27", "34"])
-
-    assert 0 == to_location_spy.call_count
-    assert 1 == to_maiden_spy.call_count
-
-
-def test_convert_loc_to_maiden(to_location_spy, to_maiden_spy):
-    main(["GG52qj"])
-
-    assert 1 == to_location_spy.call_count
-    assert 0 == to_maiden_spy.call_count
-
-
-def test_invalid_loc_args(to_location_spy, to_maiden_spy):
-    main("GG52qj 27.34 23.98".split())
-
-    assert 0 == to_location_spy.call_count
-    assert 0 == to_maiden_spy.call_count
-
-
-@pytest.mark.parametrize("args_str", ["GG52qj", "27.2 29.0"])
-def test_render_maps_url(args_str, maps_url_spy):
+@pytest.mark.parametrize("args_str", ["GG52qj", "-27.625 -48.66666666"])
+def test_render_maps_url(args_str):
     args = args_str.split()
     args.append("-u")
-    main(args)
+    ret = subprocess.check_output(["maidenhead"] + args, universal_newlines=True)
+    L = ret.split("\n")
 
-    assert 1 == maps_url_spy.call_count
+    assert (
+        L[1]
+        == "https://www.google.com/maps/@?api=1&map_action=map&center=-27.625,-48.666666666666664"
+    )
