@@ -28,8 +28,8 @@ def google_maps(maiden: str) -> str:
         Google Maps URL
     """
 
-    url = "https://www.google.com/maps/@?api=1&map_action=map" "&center={},{}".format(
-        *to_location(maiden)
-    )
+    loc = to_location(maiden)
+
+    url = f"https://www.google.com/maps/@?api=1&map_action=map&center={loc[0]},{loc[1]}"
 
     return url

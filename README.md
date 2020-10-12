@@ -72,6 +72,13 @@ maidenhead BP65aa12
 
 > 65.0083 -147.9917
 
+The "python -m" CLI is also available:
+
+```sh
+python -m maidenhead 65.0 -148.0
+```
+
+
 ## Alternatives
 
 We also have
