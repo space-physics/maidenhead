@@ -56,6 +56,8 @@ mh.to_location('AB01cd')
 
 takes Maidenhead location string and returns top-left lat, lon of Maidenhead grid square.
 
+The `center=True` option outputs lat lon of the center of provided maidenhead grid square, instead of the default southwest corner.
+
 ## Command Line
 
 The command line interface takes either decimal degrees for "latitude longitude" or the Maidenhead locator string:
@@ -78,6 +80,7 @@ The "python -m" CLI is also available:
 python -m maidenhead 65.0 -148.0
 ```
 
+The `--center` option outputs lat lon of the center of provided maidenhead grid square, instead of the default southwest corner.
 
 ## Alternatives
 

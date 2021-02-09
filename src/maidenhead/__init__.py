@@ -11,7 +11,7 @@ from .to_location import to_location
 from .to_maiden import to_maiden
 
 
-def google_maps(maiden: str) -> str:
+def google_maps(maiden: str, center: bool = False) -> str:
     """
     generate Google Maps URL from Maidenhead grid
 
@@ -21,6 +21,9 @@ def google_maps(maiden: str) -> str:
     maiden : str
         Maidenhead grid
 
+    center : bool
+        If true, return the center of provided maidenhead grid square, instead of default south-west corner
+
     Results
     -------
 
@@ -28,7 +31,7 @@ def google_maps(maiden: str) -> str:
         Google Maps URL
     """
 
-    loc = to_location(maiden)
+    loc = to_location(maiden, center)
 
     url = f"https://www.google.com/maps/@?api=1&map_action=map&center={loc[0]},{loc[1]}"
 
