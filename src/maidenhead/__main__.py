@@ -5,10 +5,10 @@ from copy import copy
 import maidenhead
 
 
-def main(loc: T.Union[str, T.Sequence[float]], precision: int = 3, url: bool = False):
+def main(loc: T.Union[str, T.Sequence[float]], precision: int = 3, url: bool = False, center: bool = False):
     if isinstance(loc, str):  # maidenhead
         maiden = copy(loc)
-        loc = maidenhead.to_location(loc)
+        loc = maidenhead.to_location(loc, center)
         print(f"{loc[0]:.4f} {loc[1]:.4f}")
     elif len(loc) == 2:  # lat lon
         if isinstance(loc[0], str):
@@ -20,7 +20,7 @@ def main(loc: T.Union[str, T.Sequence[float]], precision: int = 3, url: bool = F
         raise ValueError("specify Maidenhead grid (single string) or lat lon (with space between)")
 
     if url:
-        uri = maidenhead.google_maps(maiden)
+        uri = maidenhead.google_maps(maiden, center)
         print(uri)
         return uri
 
@@ -34,6 +34,8 @@ def cli():
     )
     p.add_argument("-p", "--precision", help="maidenhead precision", type=int, default=3)
     p.add_argument("-u", "--url", help="also output Google Maps URL", action="store_true")
+    p.add_argument("-c", "--center", help="output lat lon of the center of provided maidenhead grid square "
+                                          "(default output: lat lon of it's south-west corner)", action="store_true")
     args = p.parse_args()
 
     if len(args.loc) == 1:
@@ -41,7 +43,7 @@ def cli():
     else:
         loc = args.loc
 
-    main(loc, args.precision, args.url)
+    main(loc, args.precision, args.url, args.center)
 
 
 if __name__ == "__main__":
