@@ -1,7 +1,4 @@
-import typing as T
-
-
-def to_location(maiden: str, center: bool = False) -> T.Tuple[float, float]:
+def to_location(maiden: str, center: bool = False) -> tuple[float, float]:
     """
     convert Maidenhead grid to latitude, longitude
 

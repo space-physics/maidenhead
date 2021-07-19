@@ -1,23 +1,23 @@
+from __future__ import annotations
 import argparse
-import typing as T
 from copy import copy
 
 import maidenhead
 
 
 def main(
-    loc: T.Union[str, T.Sequence[float]],
+    loc: str | tuple[float, float],
     precision: int = 3,
     url: bool = False,
     center: bool = False,
-):
+) -> str | tuple[float, float]:
     if isinstance(loc, str):  # maidenhead
         maiden = copy(loc)
         loc = maidenhead.to_location(loc, center)
         print(f"{loc[0]:.4f} {loc[1]:.4f}")
     elif len(loc) == 2:  # lat lon
         if isinstance(loc[0], str):
-            loc = list(map(float, loc))
+            loc = (float(loc), float(loc))
         maiden = maidenhead.to_maiden(*loc, precision=precision)
         print(maiden)
         loc = maiden
