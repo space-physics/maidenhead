@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def to_location(maiden: str, center: bool = False) -> tuple[float, float]:
     """
     convert Maidenhead grid to latitude, longitude
