@@ -104,8 +104,6 @@ integer, intent(in), optional :: precision
 
 integer :: Oa, i, prec
 real(wp) :: Da, Db, Ra, Rb, lon1, lat1
-character :: buf
-character(8) :: maid
 
 maiden = ""
 
@@ -131,10 +129,8 @@ do while (i < prec)
   Ra = modulo(lon1, 1._wp)
   Rb = modulo(lat1, 1._wp)
   if (modulo(i, 2) == 0) then
-    write(buf, '(I1)') int(Da)
-    maiden(i+1:i+1) = buf
-    write(buf, '(i1)') int(Db)
-    maiden(i+2:i+2) = buf
+    write(maiden(i+1:i+1), '(I1)') int(Da)
+    write(maiden(i+2:i+2), '(i1)') int(Db)
     lon1 = 24 * Ra
     lat1 = 24 * Rb
   else
@@ -144,12 +140,8 @@ do while (i < prec)
     lat1 = 10 * Rb
   endif
 
-  if (len_trim(maiden) >= 6) then
-    maid(1:4) = maiden(1:4)
-    maid(5:6) = toLower(maiden(5:6))
-    maid(7:8) = maiden(7:8)
-    maiden = maid
-  endif
+  if (len_trim(maiden) >= 6) maiden(5:6) = toLower(maiden(5:6))
+
 end do
 
 end subroutine to_maiden
