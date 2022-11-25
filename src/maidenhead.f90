@@ -120,10 +120,8 @@ maiden(1:1) = achar(Oa + int(Da))
 maiden(2:2) = achar(Oa + int(Db))
 lon1 = real(Ra, wp) / 2
 lat1 = Rb
-i = 1
 
-do while (i < prec)
-  i = i+1
+do i = 2, prec
   Da = int(lon1)
   Db = int(lat1)
   Ra = modulo(lon1, 1._wp)
