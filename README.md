@@ -1,7 +1,7 @@
 # Maidenhead &lt;-&gt; Lat/Lon
 
 [![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
-![Actions Status](https://github.com/space-physics/maidenhead/workflows/ci/badge.svg)
+[![ci](https://github.com/space-physics/maidenhead/actions/workflows/ci.yml/badge.svg)](https://github.com/space-physics/maidenhead/actions/workflows/ci.yml)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/space-physics/maidenhead.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/space-physics/maidenhead/context:python)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
@@ -63,13 +63,13 @@ The `center=True` option outputs lat lon of the center of provided maidenhead gr
 The command line interface takes either decimal degrees for "latitude longitude" or the Maidenhead locator string:
 
 ```sh
-maidenhead 65.0 -148.0
+python -m maidenhead 65.0 -148.0
 ```
 
 > BP65aa
 
 ```sh
-maidenhead BP65aa12
+python -m maidenhead BP65aa12
 ```
 
 > 65.0083 -147.9917
@@ -83,9 +83,6 @@ python -m maidenhead 65.0 -148.0
 The `--center` option outputs lat lon of the center of provided maidenhead grid square, instead of the default southwest corner.
 
 ## Alternatives
-
-We also have
-[Maidenhead conversion for Julia](https://github.com/space-physics/maidenhead-julia).
 
 Open Location Codes a.k.a Plus Codes are in
 [Python code by Google](https://github.com/google/open-location-code/tree/master/python).
