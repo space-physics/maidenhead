@@ -118,7 +118,7 @@ Rb = modulo(lat + 90, 10._wp)
 
 maiden(1:1) = achar(Oa + int(Da))
 maiden(2:2) = achar(Oa + int(Db))
-lon1 = real(Ra, wp) / 2
+lon1 = Ra / 2
 lat1 = Rb
 
 do i = 2, prec
