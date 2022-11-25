@@ -14,3 +14,6 @@ target_link_libraries(main PRIVATE maidenhead)
 
 add_test(NAME to_location COMMAND main GG52qj)
 set_property(TEST to_location PROPERTY PASS_REGULAR_EXPRESSION "(-27.60[0-9]+[ ]+-48.62[0-9]+)")
+
+add_test(NAME to_maiden COMMAND main -27.60 -48.62)
+set_property(TEST to_maiden PROPERTY PASS_REGULAR_EXPRESSION "GG52qj")

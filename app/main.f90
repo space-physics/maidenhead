@@ -1,12 +1,11 @@
 program main
 
-use, intrinsic :: iso_fortran_env, only : real64
-use maidenhead, only : maiden2latlon
+use maidenhead, only : to_location, to_maiden, wp
 
 implicit none
 
-real(real64) :: lat, lon
-character(8) :: buf1
+real(wp) :: lat, lon
+character(8) :: buf1, buf2
 integer :: i, L
 
 i = command_argument_count()
@@ -18,9 +17,19 @@ case (1)
   if (i/=0) error stop "please provide a Maidenhead locator"
 
 
-  call maiden2latlon(buf1, .true., lat, lon)
+  call to_location(buf1, .true., lat, lon)
   print '(2F9.4)', lat, lon
+case (2)
+  call get_command_argument(1, buf1, status=i)
+  if (i/=0) error stop "please provide lat lon"
+  call get_command_argument(2, buf2, status=i)
+  if (i/=0) error stop "please provide lat lon"
 
+  read(buf1, *) lat
+  read(buf2, *) lon
+
+  call to_maiden(lat, lon, buf2)
+  print '(a8)', buf2
 case default
   error stop "give Maidenhead locator string OR latitude longitude"
 end select

@@ -1,12 +1,12 @@
 module maidenhead
 
-use, intrinsic :: iso_fortran_env, only : real64
+use, intrinsic :: iso_fortran_env, only : wp=>real64
 
 implicit none (type, external)
 
 contains
 
-elemental subroutine maiden2latlon(maiden, center, lat, lon)
+elemental subroutine to_location(maiden, center, lat, lon)
 !! convert Maidenhead grid to latitude, longitude
 !!
 !! Parameters
@@ -30,7 +30,7 @@ elemental subroutine maiden2latlon(maiden, center, lat, lon)
 
 character(*), intent(in) :: maiden
 logical, intent(in) :: center
-real(real64), intent(out) :: lon, lat
+real(wp), intent(out) :: lon, lat
 
 character(8) :: maid
 integer :: N, Oa
@@ -93,7 +93,66 @@ if(center) then
   end select
 endif
 
-end subroutine maiden2latlon
+end subroutine to_location
+
+
+subroutine to_maiden(lat, lon, maiden, precision)
+
+real(wp), intent(in) :: lat, lon
+character(8), intent(out) :: maiden
+integer, intent(in), optional :: precision
+
+integer :: Oa, i, prec
+real(wp) :: Da, Db, Ra, Rb, lon1, lat1
+character :: buf
+character(8) :: maid
+
+maiden = ""
+
+prec = 3
+if(present(precision)) prec = precision
+
+Oa = iachar("A")
+Da = int((lon + 180) / 20)
+Db = int((lat + 90) / 10)
+Ra = modulo(lon + 180, 20._wp)
+Rb = modulo(lat + 90, 10._wp)
+
+maiden(1:1) = achar(Oa + int(Da))
+maiden(2:2) = achar(Oa + int(Db))
+lon1 = real(Ra, wp) / 2
+lat1 = Rb
+i = 1
+
+do while (i < prec)
+  i = i+1
+  Da = int(lon1)
+  Db = int(lat1)
+  Ra = modulo(lon1, 1._wp)
+  Rb = modulo(lat1, 1._wp)
+  if (modulo(i, 2) == 0) then
+    write(buf, '(I1)') int(Da)
+    maiden(i+1:i+1) = buf
+    write(buf, '(i1)') int(Db)
+    maiden(i+2:i+2) = buf
+    lon1 = 24 * Ra
+    lat1 = 24 * Rb
+  else
+    maiden(i+2:i+2) = achar(Oa + int(Da))
+    maiden(i+3:i+3) = achar(Oa + int(Db))
+    lon1 = 10 * Ra
+    lat1 = 10 * Rb
+  endif
+
+  if (len_trim(maiden) >= 6) then
+    maid(1:4) = maiden(1:4)
+    maid(5:6) = toLower(maiden(5:6))
+    maid(7:8) = maiden(7:8)
+    maiden = maid
+  endif
+end do
+
+end subroutine to_maiden
 
 
 elemental function toUpper(str)
@@ -106,12 +165,29 @@ integer :: i,j
 
 toUpper = str
 
-!do concurrent (i = 1:len(str))  ! FIXME: Flang
 do i = 1,len(str)
   j = index(lower,str(i:i))
   if (j > 0) toUpper(i:i) = upper(j:j)
 end do
 
 end function toUpper
+
+
+elemental function toLower(str)
+!! ASCII letters to lowercase
+character(*), intent(in) :: str
+character(len(str)) :: toLower
+character(*), parameter :: lower="abcdefghijklmnopqrstuvwxyz", &
+                            upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+integer :: i,j
+
+toLower = str
+
+do i = 1,len(str)
+  j = index(upper, str(i:i))
+  if (j > 0) toLower(i:i) = lower(j:j)
+end do
+
+end function toLower
 
 end module maidenhead
