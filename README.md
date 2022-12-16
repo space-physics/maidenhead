@@ -2,7 +2,6 @@
 
 [![DOI](https://zenodo.org/badge/132653071.svg)](https://zenodo.org/badge/latestdoi/132653071)
 [![ci](https://github.com/space-physics/maidenhead/actions/workflows/ci.yml/badge.svg)](https://github.com/space-physics/maidenhead/actions/workflows/ci.yml)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/space-physics/maidenhead.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/space-physics/maidenhead/context:python)
 [![pypi versions](https://img.shields.io/pypi/pyversions/maidenhead.svg)](https://pypi.python.org/pypi/maidenhead)
 [![PyPi Download stats](http://pepy.tech/badge/maidenhead)](http://pepy.tech/project/maidenhead)
 
@@ -18,8 +17,6 @@ Maidenhead provides 4 levels of increasing accuracy
   3     |  Metropolis
   4     |  City
 
-## Install
-
 ```sh
 pip install maidenhead
 ```
@@ -32,15 +29,13 @@ git clone https://github.com/space-physics/maidenhead
 pip install -e maidenhead
 ```
 
-## Examples
-
-All examples assume first doing
+Examples assume first doing
 
 ```python
 import maidenhead as mh
 ```
 
-### lat lon to Maidenhead locator
+Lat, lon to Maidenhead locator:
 
 ```python
 mh.to_maiden(lat, lon, level)
@@ -48,7 +43,7 @@ mh.to_maiden(lat, lon, level)
 
 returns a char (len = lvl*2)
 
-### Maidenhead locator to lat lon
+Maidenhead locator to lat lon:
 
 ```python
 mh.to_location('AB01cd')
