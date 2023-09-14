@@ -16,6 +16,8 @@ Maidenhead provides 4 levels of increasing accuracy
   2     |  Regional
   3     |  Metropolis
   4     |  City
+  5     |  Street
+  6     |  1m precision
 
 ```sh
 pip install maidenhead
@@ -81,3 +83,5 @@ The `--center` option outputs lat lon of the center of provided maidenhead grid 
 
 Open Location Codes a.k.a Plus Codes are in
 [Python code by Google](https://github.com/google/open-location-code/tree/master/python).
+
+Web convertor [Earth Point - Tools for Google Earth](https://www.earthpoint.us/Convert.aspx).
