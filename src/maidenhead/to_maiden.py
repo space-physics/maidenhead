@@ -40,11 +40,22 @@ def to_maiden(lat: float, lon: float, precision: int = 3) -> str:
             val = p
             radix = radix[:-1]
 
+    def float_coord_to_fixed_scale(f, shift, max_val, multiplier):
+        scale = 10**12
+        n, d = f.as_integer_ratio()
+        fixed = ((n + shift * d) * scale + d // 2) // d
+        max_val_scaled = max_val * scale
+        if fixed != max_val_scaled:
+            fixed %= max_val_scaled
+
+        res = (multiplier * fixed) // max_val_scaled
+        return min(max(0, res), multiplier - 1)
+
     radix = [18] + [24 if i % 2 else 10 for i in range(precision - 1)]
     multiplier = functools.reduce(operator.mul, radix)
 
-    int_lat = int((lat + 90) * multiplier + .5) // functools.reduce(operator.mul, radix[:2])
-    int_lon = int(((lon + 180) % 360) * (multiplier//2) + .5) // functools.reduce(operator.mul, radix[:2])
+    int_lat = float_coord_to_fixed_scale(lat, 90, 180, multiplier)
+    int_lon = float_coord_to_fixed_scale(lon, 180, 360, multiplier)
 
     maiden = "".join(reversed(list(itertools.chain(*zip(convert(int_lat, radix), convert(int_lon, radix))))))
 
