@@ -9,6 +9,15 @@ def test_latlon2maiden(location):
     assert m == location.maiden[:6]
 
 
+def test_precision(location_precision):
+    assert location_precision.maiden[:2] == maidenhead.to_maiden(*location_precision.latlon, precision=1)
+    assert location_precision.maiden[:4] == maidenhead.to_maiden(*location_precision.latlon, precision=2)
+    assert location_precision.maiden[:6] == maidenhead.to_maiden(*location_precision.latlon, precision=3)
+    assert location_precision.maiden[:8] == maidenhead.to_maiden(*location_precision.latlon, precision=4)
+    assert location_precision.maiden[:10] == maidenhead.to_maiden(*location_precision.latlon, precision=5)
+    assert location_precision.maiden[:12] == maidenhead.to_maiden(*location_precision.latlon, precision=6)
+
+
 def test_maiden2latlon(location):
     lat, lon = maidenhead.to_location(location.maiden)
     assert lat == approx(location.latlon[0], rel=0.0001)
